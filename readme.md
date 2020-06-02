@@ -7,6 +7,12 @@ npm install
 ```
 
 ## Run server
+Please create pubsub project topic and add to your local env.
+```
+cp .env.example .env
+```
+
+Run the app :
 ```bash
 npm start
 ```

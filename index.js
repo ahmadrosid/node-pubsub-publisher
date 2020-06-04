@@ -14,7 +14,7 @@ app.post("/", async (req, res) => {
     data = data.data;
   }
 
-  await publish(data)
+  await publish(data, topicName)
     .then((messageId) => {
       res.send(
         { status: true, messageId: messageId, topic: topicName, data: data },

@@ -7,13 +7,23 @@ app.use(express.json());
 const port = 3000;
 
 app.post("/", async (req, res) => {
-  const messageId = await publish(req.body).catch(err => {
-    res.statusCode = 500;
-    res.send({ status: false, message: err });
-  });
-  console.log(`Message ${messageId} published.`);
+  let data = req.body;
+  let topicName = env("PUBSUB_TOPIC_NAME");
+  if (req.body.topic) {
+    topicName = data.topic;
+    data = data.data;
+  }
 
-  res.send({ status: true, messageId: messageId });
+  await publish(data)
+    .then((messageId) => {
+      res.send(
+        { status: true, messageId: messageId, topic: topicName, data: data },
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(422).send({ status: false, message: err });
+    });
 });
 
 app.listen(port, () => console.log(`Server run at http://localhost:${port}`));
@@ -22,8 +32,7 @@ const env = (variable) => {
   return process.env[variable];
 };
 
-async function publish(input) {
-  const topicName = env("PUBSUB_TOPIC_NAME");
+async function publish(input, topicName) {
   const data = JSON.stringify(input);
   const pubSubClient = new PubSub();
 
@@ -33,5 +42,5 @@ async function publish(input) {
     return await pubSubClient.topic(topicName).publish(dataBuffer);
   }
 
-  return publishMessage()
+  return publishMessage();
 }

@@ -27,7 +27,7 @@ app.post("/", async (req, res) => {
 	const span = opentracing.globalTracer().startSpan('pubsubEvent');
 	const tracsactionID = ID();
 	span.setTag('kind', 'pubsubEvent');
-	span.setTag('join:trasaction_id', tracsactionID);
+	span.setTag('guid:transaction_id', tracsactionID);
 
 	let data = req.body;
 	let topicName = env("PUBSUB_TOPIC_NAME");

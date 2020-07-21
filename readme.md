@@ -13,7 +13,7 @@ cp .env.example .env
 ```
 
 ### Environment Variable
-| Environment Variable | Description |
+| Name | Description |
 | -------------------- | ----------- |
 | GOOGLE_APPLICATION_CREDENTIALS | GCP google-secret.json file |
 | PUBSUB_TOPIC_NAME | Default pubsub topic name |

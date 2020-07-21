@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "lightstep-tracer": "^0.30.2",
     "ls-trace": "^0.3.2",
-    "opentracing": "^0.14.4"
+    "opentracing": "^0.14.4",
+    "uuid": "^8.2.0"
   }
 }

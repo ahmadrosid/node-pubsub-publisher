@@ -7,7 +7,7 @@ var lightstep   = require('lightstep-tracer');
 const express = require("express");
 const app = express();
 app.use(express.json());
-const port = 3001;
+const port = process.env.PORT || 3000;
 
 const env = (variable) => {
 	return process.env[variable];
@@ -50,7 +50,7 @@ app.post("/", async (req, res) => {
 		res.status(422).send({ status: false, message: err });
 		span.log({ event: 'Failed publish pubsub message' })
 	});
-	
+
 	span.finish()
 	tracer.flush()
 });
@@ -63,7 +63,7 @@ async function publish(input, topicName, tracsactionID, spanContext) {
 
   async function publishMessage() {
 	const dataBuffer = Buffer.from(data);
-	const attributes = { 
+	const attributes = {
 		transactionId: tracsactionID,
 		spanContext: spanContext
 	};

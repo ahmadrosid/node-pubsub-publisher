@@ -17,8 +17,6 @@ cp .env.example .env
 | -------------------- | ----------- |
 | GOOGLE_APPLICATION_CREDENTIALS | GCP google-secret.json file |
 | PUBSUB_TOPIC_NAME | Default pubsub topic name |
-| LIGHTSTEP_KEY | The lightstep token for tracing |
-
 
 Run the app :
 ```bash

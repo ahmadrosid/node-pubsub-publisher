@@ -1,5 +1,5 @@
 # Node Pubsub Publisher
-This project is for helper when you are working with pubsub. Only for publish pubsub message.
+This project is designed to help when you're working with pubsub. Only for publishing pubsub messages.
 
 ## Install
 ```bash
